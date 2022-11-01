@@ -1,0 +1,81 @@
+#!/bin/sh
+
+read -p "Are you sure you want to run this cript? y/n " choice
+
+partition () {
+	# really should add device checking here...
+	read -p "Enter name of the device you want to install to... " device
+
+	parted -s $device mklabel gpt
+	echo "Disk label set to GPT"
+	parted -s -a optimal $device mkpart "primary" "fat32" "0%" "257MiB"
+	parted -s $device set 1 esp on
+	echo "EFI partition created..."
+	parted -s -a optimal $device mkpart "primary" "ext4" "257MiB" "769MiB"
+	parted -s $device set 2 BOOT on
+	echo "Boot partition created..."
+	parted -s -a optimal $device mkpart "primary" "ext4" "769MiB" "100%"
+	parted -s $device set 3 lvm on
+	echo "LVM partition created..."
+}
+
+setup_crypt_part() {
+	if [[ "$device" == *"nvme"* ]]; then
+		cryptsetup luksFormat $device"p3"
+		cryptsetup luksOpen $device"p3" cryptlvm
+	else
+		cryptsetup luksFormat $device"3"
+		cryptsetup luksOpen $device"3" cryptlvm
+	fi
+
+	lvm pvcreate /dev/mapper/cryptlvm
+	vgcreate gentoolvm /dev/mapper/cryptlvm
+
+	while :
+	do
+		read -p "How big do you want root and var partitions? Default [80G] [80G]" part_sizes
+		if [ -z "$part_sizes" ]; then
+			lvcreate -L 80G -n root gentoolvm
+			lvcreate -L 80G -n var gentoolvm
+			lvcreate -l 100%FREE -n home gentoolvm
+			break
+		else
+			format=("$(echo $part_sizes | awk '{print $1}')" "$(echo $part_sizes | awk '{print $2}')")
+			for str in ${format[@]}; do
+				if [[ "$str" == *"G"* ]]; then
+					echo "Correct format..."
+				else
+					echo "Proper format is [xG xG]... retry."
+					break && continue
+				fi
+			done
+
+			 lvcreate -L $format[0] -n root gentoolvm
+			 lvcreate -L $format[1] -n var gentoolvm
+                         lvcreate -l 100%FREE -n home gentoolvm
+			 break
+		fi
+	done
+}
+
+create_filesystems() {
+	if [[ "$device" == *"nvme"* ]]; then
+		mkfs.vfat -F32 $device"p1"
+		mkfs.ext4 $device"p2"
+		mkfs.ext4 /dev/mapper/gentoolvm-root
+		mkfs.ext4 /dev/mapper/gentoolvm-var
+		mkfs.ext4 /dev/mapper/gentoolvm-home
+	else
+		mkfs.vfat -F32 $device"1"
+		mkfs.ext4 $device"2"
+		mkfs.ext4 /dev/mapper/gentoolvm-root
+		mkfs.ext4 /dev/mapper/gentoolvm-var
+		mkfs.ext4 /dev/mapper/gentoolvm-home
+	fi
+}
+
+if [ "$choice" = "y" ]; then
+	partition
+	setup_crypt_part
+	create_filesystems
+fi

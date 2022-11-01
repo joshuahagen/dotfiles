@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd ~/tos
+zulu11.60.19-ca-jdk11.0.17-linux_x64/bin/java -jar launcher.jar

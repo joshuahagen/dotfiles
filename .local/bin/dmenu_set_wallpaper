@@ -1,0 +1,12 @@
+#!/bin/sh
+
+files="$(find ~/pix/wallpapers/ -type f)"
+selected="$(echo "$files" | dmenu -i -p "Enter wallpaper file path" || exit 1)"
+
+if [ -f "$selected" ]; then
+	feh --bg-scale --no-xinerama $selected
+	notify-send "Wallpaper set to $selected"
+else
+	notify-send "Wallpaper file does not exist..."
+	exit 1
+fi

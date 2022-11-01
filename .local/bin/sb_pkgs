@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo " $(\ls -d /var/db/pkg/*/*| cut -f5- -d/ | wc -l) pkgs"

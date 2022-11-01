@@ -1,0 +1,33 @@
+#!/bin/sh
+
+SS_DIR="/home/`whoami`/pix/screenshots/"
+
+take_ss() {
+        orig_name="$(date +%s).png"
+        maim "$SS_DIR$orig_name"
+
+        file_name="$(echo "$nothing" | dmenu -i -p "Name of the file?")" || exit 1
+        file_name2=$file_name
+        if [ "$file_name" != *".png"* ]; then
+                file_name+=".png"
+        fi
+
+        file_path=$SS_DIR$file_name
+        if [ -f "$file_path" ]; then
+                notify-send "File with that name already exists, adding timestamp..."
+                file_name2+="$orig_name"
+                if [ "$file_name2" != *".png"* ]; then
+                        file_name="$file_name2"
+                fi
+        fi
+
+        $(mv "$SS_DIR$orig_name" "$SS_DIR$file_name")
+        notify-send "Saved full screenshot [ $file_name ]"
+}
+
+if [ -d "$SS_DIR" ]; then
+        take_ss
+else
+        mkdir $SS_DIR
+        take_ss
+fi
