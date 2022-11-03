@@ -2,7 +2,7 @@
 . /home/joshua/.screenlayout/monitor_orientation.sh
 
 # set wallpaper
-feh --bg-scale --no-xinerama ~/pix/wallpapers/pumpkin.jpg
+feh --bg-scale --no-xinerama ~/pix/wallpapers/mountain_view.jpg
 
 # start picom compositor
 picom &
