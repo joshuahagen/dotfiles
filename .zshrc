@@ -1,4 +1,5 @@
 export ZSH="$HOME/.oh-my-zsh"
+export ZSH_CUSTOM=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
 # change the location of .zcompdump files so they don't clutter our $HOME
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 SH_THEME="robbyrussell"
@@ -14,6 +15,7 @@ plugins=(
 	git
 	zsh-syntax-highlighting
 	zsh-autosuggestions
+	cd-ls
 )
 
 # load plugins
