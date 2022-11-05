@@ -9,11 +9,7 @@ take_ss() {
         input="$(echo "$DEFAULT_FN" | dmenu -i -p "Name of the file?")" || exit 1
         # check if input isn't empty & if it isn't then also make sure the $DEFAULT_FN isn't chosen
         if [[ "$input" != "" && "$input" != "$DEFAULT_FN" ]]; then
-                # check if the input has .png extension, if not, add it!
-                if [ "$input" != *".png"* ]; then
-                        input+=".png"
-                fi
-
+                input+="_$DEFAULT_FN"
                 $(mv "$SS_DIR/$DEFAULT_FN" "$SS_DIR/$input")
                 notify-send "Success! Saving screenshot - $input" && exit 0
         fi
