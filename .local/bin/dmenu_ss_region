@@ -1,33 +1,29 @@
 #!/bin/sh
 
-SS_DIR="/home/`whoami`/pix/screenshots/"
+SS_DIR="/home/`whoami`/pix/screenshots"     # default screenshot directory
+DEFAULT_FN="$(date +%F_%I-%M-%S%P)_reg.png" # default file name
 
 take_ss() {
-	orig_name="$(date +%s)_reg.png"
-        maim -s "$SS_DIR$orig_name"
+        maim -s $SS_DIR/$DEFAULT_FN
 
-        file_name="$(echo "$nothing" | dmenu -i -p "Name of the file?")" || exit 1
-        file_name2=$file_name
-        if [ "$file_name" != *".png"* ]; then
-                file_name+=".png"
-        fi
-
-        file_path=$SS_DIR$file_name
-        if [ -f "$file_path" ]; then
-                notify-send "File with that name already exists, adding timestamp..."
-                file_name2+="$orig_name"
-                if [ "$file_name2" != *".png"* ]; then
-                        file_name="$file_name2"
+        input="$(echo "$DEFAULT_FN" | dmenu -i -p "Name of the file?")" || exit 1
+        # check if input isn't empty & if it isn't then also make sure the $DEFAULT_FN isn't chosen
+        if [[ "$input" != "" && "$input" != "$DEFAULT_FN" ]]; then
+                # check if the input has .png extension, if not, add it!
+                if [ "$input" != *".png"* ]; then
+                        input+=".png"
                 fi
+
+                $(mv "$SS_DIR/$DEFAULT_FN" "$SS_DIR/$input")
+                notify-send "Success! Saving screenshot - $input" && exit 0
         fi
 
-        $(mv "$SS_DIR$orig_name" "$SS_DIR$file_name")
-        notify-send "Saved regional screenshot [ $file_name ]"
+        notify-send "Success! Saving screenshot - $DEFAULT_FN"
 }
 
 if [ -d "$SS_DIR" ]; then
-	take_ss
-else
-	mkdir $SS_DIR
-	take_ss
+        take_ss
+else # if $SS_DIR doesn't exist, create it and take ss
+        mkdir $SS_DIR
+        take_ss
 fi
