@@ -1,3 +1,3 @@
 #!/bin/sh
 
-echo "^c#adcbe3^  $(date '+%F %I:%M:%S %p')"
+echo "^c#FE7E6D^ $(date '+%F %I:%M:%S %p')"

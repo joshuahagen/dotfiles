@@ -1,3 +1,3 @@
 #!/bin/sh
 
-echo "^c#B19CD7^  $(sensors | grep Composite: | awk '{print $2}') $(df -h | grep home | awk '{print $6" "$5}')"
+echo "^c#A8D5BAFF^ $(sensors | grep Composite: | awk '{print $2}') $(df -h | grep home | awk '{print $6" "$5}')"
