@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo "^c#FE7E6D^ $(uname -r | cut -b -12)"
