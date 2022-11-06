@@ -1,0 +1,30 @@
+#!/bin/sh
+
+and_devices=$(simple-mtpfs -l 2>/dev/null)
+
+get_mount() {
+	[ -z "$chosen" ] && exit 1
+	mp="$(find $1 2>/dev/null | dmenu -i -p "Type in mount point")" || exit 1
+	test -z "$mp" && exit 1
+	if [ ! -d "$mp" ]; then
+		mkdiryn=$(printf "No\\nYes" | dmenu -i -p "$mp does not exist. Create it?") || exit 1
+		[ "$mkdiryn" = "Yes" ] && (mkdir -p "$mp" || doas -A mkdir -p "$mp")
+	fi
+}
+
+mount_android() {
+	chosen="$(echo "$and_devices" | dmenu -i -p "Chose android device to mount")" || exit 1
+	chosen="$(echo "$chosen" | cut -d : -f 1)"
+	get_mount "$HOME -maxdepth 3 -type d"
+	simple-mtpfs --device "$chosen" "$mp"
+	echo "OK" | dmenu -i -p "Tap allow on your phone if it asks for permission and then press enter" || exit 1
+	simple-mtpfs --device "$chosen" "$mp"
+	notify-send "Mounted android device to $mp"
+}
+
+if [ -z "$and_devices" ]; then
+	echo "No Android device detected" && exit
+else
+	echo "Android device(s) detected"
+	mount_android
+fi

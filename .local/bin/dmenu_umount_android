@@ -1,0 +1,16 @@
+#!/bin/sh
+
+umount_android() {
+	chosen="$(awk '/simple-mtpfs/ {print $2}' /etc/mtab | dmenu -i -p "Unmount which device?")" || exit 1
+	[ -z "$chosen" ] && exit
+	fusermount -u $chosen
+}
+
+drives=$(lsblk -nrpo "name,type,size,mountpoint,label" | awk -F':' '{gsub(/ /,":")}$4!~/\/boot|\/efi|\/home$|SWAP/&&length($4)>1{printf "%s (%s) %s\n",$4,$3,$5}')
+
+if [ -z "$drives" ]; then
+	exit
+else
+	umount_android
+	notify-send "Unmounted android device @ $chosen"
+fi
