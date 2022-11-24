@@ -1,3 +1,8 @@
 #!/bin/sh
 
-echo "^c#FE7E6D^^c#D1D1D1^  $(awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Master))"
+is_muted="$(amixer | grep 'Front Left: Playback' | awk '{print $6}')"
+if [ "$is_muted" = "[off]" ]; then
+	echo "^c#FE7E6D^ Muted" && exit 0
+fi
+
+echo "^c#D1D1D1^ $(awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Master))"
