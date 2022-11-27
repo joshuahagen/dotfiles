@@ -1,0 +1,9 @@
+#!/bin/sh
+
+password=$(find ~/.password-store/ -type f -name '*.gpg' |
+	sed 's/.\{28\}\/\(.*\)\.gpg$/\1/' | dmenu -i -p "Pass:")
+
+if [ -n "$password" ]; then
+	pass show -c "$password"
+	notify-send "Copied password for $password to clipboard for 45 seconds" && exit
+fi
