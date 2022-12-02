@@ -5,4 +5,4 @@ if [ "$is_muted" = "[off]" ]; then
 	echo "^c#FE7E6D^ Muted" && exit 0
 fi
 
-echo "^c#D1D1D1^ $(awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Master))"
+echo "^c#d7bfe8^ ^c#E7D7AD^$(awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Master))"

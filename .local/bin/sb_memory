@@ -3,4 +3,4 @@
 used="$(free -h | grep Mem: | awk '{print $3}')"
 available="$(free -h | grep Mem: | awk '{print $2}')"
 
-echo "^c#FFCCBB^ $used/$available"
+echo "^c#d7bfe8^ ^c#E7D7AD^$used/$available"
