@@ -3,4 +3,4 @@
 export FG_COL="#E7D7AD"
 export ICON_COL="#d7bfe8"
 export WARN_COL="#ffaf7a"
-export ALERT_COL="FE7E6D"
+export ALERT_COL="#FE7E6D"
