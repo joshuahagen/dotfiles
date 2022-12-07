@@ -1,3 +1,13 @@
 #!/bin/sh
 
-echo "^c#d7bfe8^ ^c#E7D7AD^$(sensors | grep Tctl: | awk '{print $2}')"
+raw_temp="$(sensors | grep Tctl: | awk '{print $2}' | cut -c 2- | sed 's/°C//')"
+
+if [ $(echo $raw_temp | sed 's/ *\..*//') -gt 70 ]
+then
+	echo "^c#d7bfe8^ ^c#FE7E6D^$raw_temp°C"
+elif [ $(echo $raw_temp | sed 's/ *\..*//') -gt 50 ]
+then
+	echo "^c#d7bfe8^ ^c#ffaf7a^$raw_temp°C"
+else
+	echo "^c#d7bfe8^ ^c#E7D7AD^$raw_temp°C"
+fi
