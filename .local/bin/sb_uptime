@@ -1,3 +1,5 @@
 #!/bin/sh
 
-echo "^c#d7bfe8^ ^c#E7D7AD^$(uptime -p | cut -c 4- | sed 's/day/d/;s/days/d/;s/hours/h/;s/hour/h/;s/minutes/m/;s/minute/m/;s/ //g;s/,/ /g;')"
+source ~/.local/bin/theme
+
+echo "^c$ICON_COL^ ^c$FG_COL^$(uptime -p | cut -c 4- | sed 's/day/d/;s/days/d/;s/hours/h/;s/hour/h/;s/minutes/m/;s/minute/m/;s/ //g;s/,/ /g;')"

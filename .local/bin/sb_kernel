@@ -1,3 +1,5 @@
 #!/bin/sh
 
-echo "^c#d7bfe8^ ^c#E7D7AD^$(uname -r | sed 's/\-.*//')"
+source ~/.local/bin/theme
+
+echo "^c$ICON_COL^ ^c$FG_COL^$(uname -r | sed 's/\-.*//')"
