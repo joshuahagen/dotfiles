@@ -2,4 +2,4 @@
 
 source ~/.local/bin/theme
 
-echo "^c$ICON_COL^ ^c$FG_COL^$(uptime -p | cut -c 4- | sed 's/day/d/;s/days/d/;s/hours/h/;s/hour/h/;s/minutes/m/;s/minute/m/;s/ //g;s/,/ /g;')"
+echo "^c$ICON_COL^ ^c$FG_COL^$(uptime -p | cut -c 4- | sed 's/days/d/;s/day/d/;s/hours/h/;s/hour/h/;s/minutes/m/;s/minute/m/;s/ //g;s/,/ /g;')"
