@@ -1,0 +1,5 @@
+#!/bin/sh
+
+wp_path=`cat ~/.wallpaper_path`
+
+swaybg -i $wp_path
