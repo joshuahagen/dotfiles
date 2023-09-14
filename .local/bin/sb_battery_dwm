@@ -1,0 +1,33 @@
+#!/bin/sh
+
+source ~/.local/bin/theme
+
+bat_perc="$(acpi | awk '{print $4}' | sed 's/.$//')"
+
+bat_charging="$(acpi | grep Discharging)"
+
+if [ -z "$bat_charging" ]
+then
+	echo "^c$ICON_COL^ ^c$GREEN_COL^$bat_perc" && exit
+else
+	continue
+fi
+
+if [ $(echo $bat_perc | sed 's/.$//') -gt 90 ]
+then
+	echo "^c$ICON_COL^ ^c$GREEN_COL^$bat_perc"
+elif [ $(echo $bat_perc | sed 's/.$//') -gt 70 ]
+then
+	echo "^c$ICON_COL^ ^c$GREEN_COL^$bat_perc"
+elif [ $(echo $bat_perc | sed 's/.$//') -gt 55 ]
+then
+	echo "^c$ICON_COL^ ^c$GREEN_COL^$bat_perc"
+elif [ $(echo $bat_perc | sed 's/.$//') -gt 40 ]
+then
+	echo "^c$ICON_COL^ ^c$WARN_COL^$bat_perc"
+elif [ $(echo $bat_perc | sed 's/.$//') -gt 20 ]
+then
+	echo "^c$ICON_COL^ ^c$WARN_COL^$bat_perc"
+else
+	echo "^c$ICON_COL^ ^c$ALERT_COL^$bat_perc"
+fi

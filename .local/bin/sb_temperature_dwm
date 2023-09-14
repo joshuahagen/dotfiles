@@ -1,0 +1,3 @@
+#!/bin/sh
+
+inxi -wxxx | grep temperature | sed 's/.*(\(.*\))/\1/' | awk '{print $1}'

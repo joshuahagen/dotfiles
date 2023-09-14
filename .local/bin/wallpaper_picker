@@ -9,6 +9,7 @@ if [[ -d $wallpaper_folder/$wallpaper_location ]]; then
 elif [[ -f $wallpaper_folder/$wallpaper_location ]]; then
 	echo "$wallpaper_folder"/"$wallpaper_temp"/"$wallpaper_location" > ~/.wallpaper_path
 	swaybg -m fill -i "$wallpaper_folder"/"$wallpaper_temp"/"$wallpaper_location"
+	notify-send "Wallpaper set"
 else
     exit 1
 fi

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SS_DIR="/home/`whoami`/pix/screenshots"     # default screenshot directory
+SS_DIR="/home/`whoami`/pictures/screenshots"     # default screenshot directory
 DEFAULT_FN="$(date +%F_%I-%M-%S%P)_reg.png" # default file name
 
 take_ss() {

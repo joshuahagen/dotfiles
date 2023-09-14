@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo "^c#A8D5BAFF^ $(sensors | grep Composite: | awk '{print $2}') $(df -h | grep home | awk '{print $6" "$5}')"

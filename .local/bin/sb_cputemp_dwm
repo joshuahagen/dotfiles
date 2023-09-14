@@ -1,0 +1,15 @@
+#!/bin/sh
+
+source ~/.local/bin/theme
+
+raw_temp="$(sensors | grep "Package id 0:" | awk '{print $4}')"
+
+if [ $(echo $raw_temp | sed 's/ *\..*//') -gt 70 ]
+then
+	echo "^c$ICON_COL^ ^c$ALERT_COL^$raw_temp"
+elif [ $(echo $raw_temp | sed 's/ *\..*//') -gt 50 ]
+then
+	echo "^c$ICON_COL^ ^c$WARN_COL^$raw_temp"
+else
+	echo "^c$ICON_COL^ ^c$FG_COL^$raw_temp"
+fi

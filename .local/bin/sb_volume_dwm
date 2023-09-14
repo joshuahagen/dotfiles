@@ -1,0 +1,10 @@
+#!/bin/sh
+
+source ~/.local/bin/theme
+
+is_muted="$(amixer | grep 'Front Left: Playback' | awk '{print $6}')"
+if [ "$is_muted" = "[off]" ]; then
+	echo "^c$ALERT_COL^ Muted" && exit 0
+fi
+
+echo "^c$ICON_COL^ ^c$FG_COL^$(awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Master))"

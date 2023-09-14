@@ -1,0 +1,5 @@
+#!/bin/sh
+
+source ~/.local/bin/theme
+
+echo "^c$ICON_COL^ ^c$FG_COL^$(uname -r | sed 's/\-.*//')"

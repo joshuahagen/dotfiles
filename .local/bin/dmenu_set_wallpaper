@@ -1,6 +1,6 @@
 #!/bin/sh
 
-files="$(find ~/pix/wallpapers/ -type f)"
+files="$(find ~/pictures/wallpapers/ -type f)"
 selected="$(echo "$files" | dmenu -i -p "Enter wallpaper file path" || exit 1)"
 
 if [ -f "$selected" ]; then
