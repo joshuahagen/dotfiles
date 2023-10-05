@@ -14,7 +14,7 @@ window#waybar {
 }
 
 /* general theme - can modify individual modules if chosen to do so below */
-#workspaces, #custom-power, #clock, #custom-weather, #window, #custom-uptime, #battery, #pulseaudio, #network, #memory, #cpu, #temperature {
+#workspaces, #custom-power, #clock, #custom-weather, #window, #custom-uptime, #battery, #pulseaudio, #backlight, #network, #memory, #cpu, #temperature, #tray {
 	background: rgba(40, 40, 40, 0.75);
         padding: 3px 10px 3px 10px;
 	margin: 4px 0px 4px 0px;
@@ -25,25 +25,25 @@ window#waybar {
 #workspaces {
 	padding: 5px 5px;
 	margin-left: 8px;
-	border-radius: 16px;
+	border-radius: 8px;
 }
 
 #workspaces button {
     	color: #928374;
 	padding: 5px 5px;
-    	border-radius: 16px;
+    	border-radius: 8px;
 }
 
 #workspaces button.active {
     	color: #f4d9e1;
     	background-color: transparent;
-    	border-radius: 16px;
+    	border-radius: 8px;
 }
 
 #workspaces button:hover {
 	color: black;
 	background-color: #E6B9C6;
-	border-radius: 16px;
+	border-radius: 8px;
 }
 /* WORKSPACES END */
 
@@ -52,29 +52,30 @@ window#waybar {
 	color: #f4d9e1;
 	background-color: #3a4c40;
 	margin-left: 4px;
-	border-radius: 16px 0px 0px 16px;
+	border-radius: 8px 0px 0px 8px;
 }
 
 #clock {
-    	color: #E6B9C6;
-	border-radius: 0px 16px 16px 0px;
+	border-radius: 0px 8px 8px 0px;
 }
 
 #custom-weather {
     	color: #E6B9C6;
-    	border-radius: 0px 16px 16px 0px;
+    	border-radius: 0px 8px 8px 0px;
 }
 /* MODULES LEFT END */
 
 /* MODULES MIDDLE */
 #window {
-    	border-radius: 16px;
+	margin-right: 8px;
+	margin-left: 8px;
+	border-radius: 8px;
 }
 /* MODULES MIDDLE END */
 
 /* MODULES RIGHT */
 #pulseaudio {
-	border-radius: 16px 0px 0px 16px;
+	border-radius: 8px 0px 0px 8px;
 }
 
 #pulseaudio.muted {
@@ -101,6 +102,11 @@ window#waybar {
 #temperature {
 	color: #CEC2EB;
 	margin-right: 4px;
-	border-radius: 0px 16px 16px 0px;
+	border-radius: 0px 8px 8px 0px;
+}
+
+#tray {
+	margin-right: 4px;
+	border-radius: 8px;
 }
 /* MODULES RIGHT END */

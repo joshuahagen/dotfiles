@@ -5,9 +5,9 @@
     // "width": 1280, // Waybar width
     "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
-    "modules-left": ["custom/power", "clock", "custom/weather", "hyprland/workspaces"],
+    "modules-left": ["custom/power", "clock", "hyprland/workspaces"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["pulseaudio", "battery", "custom/uptime", "network", "cpu", "memory", "temperature", "tray"],
+    "modules-right": ["pulseaudio", "backlight", "battery", "custom/uptime", "network", "cpu", "memory", "temperature", "tray"],
     // Modules configuration
     "hyprland/workspaces": {
          "disable-scroll": true,
@@ -100,6 +100,7 @@
     "custom/weather": {
     	"format": "{}°F ",
 	"exec": "~/.local/bin/sb_temperature",
+	"on-click": "~/.local/bin/display_full_weather_report",
 	"interval": 360
     },
     "cpu": {
@@ -154,11 +155,22 @@
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
+    "custom/pipewire": {
+	"format": "{icon}",
+    	"return-type": "json",
+    	"signal": 8,
+    	"interval": "once",
+    	"format-icons": {
+        	"mute": "",
+        	"default": ["", "", "", ""],
+    	},
+	"exec": "pw-volume status"
+    },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} ",
+        "format-bluetooth-muted": "MUTED  ",
         "format-muted": "MUTED  ",
         "format-icons": {
             "headphone": "",
@@ -184,4 +196,3 @@
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     }
 }
-
