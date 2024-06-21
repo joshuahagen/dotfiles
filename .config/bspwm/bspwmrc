@@ -1,12 +1,12 @@
 #!/bin/sh
 
-polybar &
+polybar top &
 
 sxhkd &
 
-bspc monitor DP-3 -d dev
-bspc monitor HDMI-0 -d www sys mus stocks chat vms 
+bspc monitor HDMI-0 -d WWW-II DEV-III MEDIA-IV VMS-V STOCKS-VI
+bspc monitor DP-3 -d 󰍺-I
 
 bspc config border_width 2
-bspc config window_gap 4
+bspc config window_gap 20
 bspc config split_ratio 0.5
