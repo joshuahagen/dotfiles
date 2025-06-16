@@ -17,11 +17,11 @@ elif [[ -f $wallpaper_folder/$wallpaper_location ]]; then
 			feh --bg-scale --no-xinerama "$wallpaper_folder"/"$wallpaper_temp"/"$wallpaper_location"
 		fi
 	else
-		hostname="$(echo uname -r)"
+		hostname="$(uname -r)"
 		distro="artix"
 		#! check if artix for laptop
-		if [[ $host == *$distro ]]; then
-			swaybg -m stretch -i "$wallpaper_path"/"$wallpaper_temp"/"$wallpaper_location"
+		if [[ $hostname == *$distro* ]]; then
+			swaybg -m stretch -i "$wallpaper_folder$wallpaper_temp$wallpaper_location"
 		else 
 			cd ~/.local/src/rwpspread/target/release && rm rwps_*.png
 			/home/joshua/.local/src/rwpspread/target/release/rwpspread -i $wallpaper_folder"/"$wallpaper_temp"/"$wallpaper_location
