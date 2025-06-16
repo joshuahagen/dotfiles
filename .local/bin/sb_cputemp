@@ -1,15 +1,3 @@
 #!/bin/sh
 
-source ~/.local/bin/theme
-
-raw_temp="$(sensors | grep Tctl: | awk '{print $2}' | cut -c 2- | sed 's/°C//')"
-
-if [ $(echo $raw_temp | sed 's/ *\..*//') -gt 70 ]
-then
-	echo "^c$ICON_COL^ ^c$ALERT_COL^$raw_temp°C"
-elif [ $(echo $raw_temp | sed 's/ *\..*//') -gt 50 ]
-then
-	echo "^c$ICON_COL^ ^c$WARN_COL^$raw_temp°C"
-else
-	echo "^c$ICON_COL^ ^c$FG_COL^$raw_temp°C"
-fi
+echo "$(sensors | grep Tctl: | awk '{print $2}')"

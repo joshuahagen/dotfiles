@@ -28,10 +28,10 @@ configuration {
     textbox-font:                "Iosevka Nerd Font 12";
     element-text-font:           "feather 48";
 
-    //background-window:           black/40%;
-    background-image:            url("~/.config/rofi/images/e.png");
-    background-normal:           url("~/.config/rofi/images/e.png");
-    background-selected:         url("~/.config/rofi/images/e.png");
+    background-window:           black/40%;
+    //background-image:            url("~/.config/rofi/images/e.png");
+    background-normal:           white/5%;
+    background-selected:         white/15%;
     foreground-normal:           white;
     foreground-selected:         white;
 }
@@ -45,7 +45,7 @@ window {
     width:                       1000px;
     border-radius:               8px;
     cursor:                      "default";
-    background-color:            transparent;
+    background-color:            var(background-window);
 }
 
 /*****----- Main Box -----*****/

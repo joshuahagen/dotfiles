@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cat ~/dox/crypt/github_token | xclip -selection clipboard 
+notify-send "Copied github oath token to clipboard" && exit 

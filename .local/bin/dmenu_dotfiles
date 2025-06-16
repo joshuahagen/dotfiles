@@ -1,0 +1,22 @@
+#!/bin/sh
+
+files="ranger\nstarship\njwm\npolybar\nbspwm\nsxhkd\nxinitrc\nbashrc"
+
+chosen="$(echo -e "$files" | dmenu -i -p "Select config file to edit...")" || exit 1
+if [ "$chosen" = "ranger" ]; then
+	st -e nvim ~/.config/ranger/rc.conf
+elif [ "$chosen" = "starship" ]; then
+	st -e nvim ~/.config/starship.toml
+elif [ "$chosen" = "jwm" ]; then
+	st -e nvim ~/.local/src/jwm/config.h
+elif [ "$chosen" = "polybar" ]; then 
+	st -e nvim ~/.config/polybar/config.ini
+elif [ "$chosen" = "bspwm" ]; then 
+	st -e nvim ~/.config/bspwm/bspwmrc
+elif [ "$chosen" = "sxhkd" ]; then
+	st -e nvim ~/.config/sxhkd/sxhkdrc
+elif [ "$chosen" = "xinitrc" ]; then 
+	st -e nvim ~/.xinitrc 
+elif [ "$chosen" = "bashrc" ]; then 
+	st -e nvim ~/.bashrc
+fi

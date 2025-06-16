@@ -10,8 +10,9 @@
 /*****----- Configuration -----*****/
 configuration {
 	modi:                       "drun";
-    show-icons:                 true;
-    display-drun:               "";
+        show-icons:                 false;
+        display-drun:               "";
+	display-filebrowser: "files";
 	drun-display-format:        "{name}";
 }
 
@@ -32,7 +33,7 @@ window {
     enabled:                     true;
     margin:                      0px;
     padding:                     0px;
-    border:                      0px solid;
+    border:                      1px solid;
     border-radius:               8px;
     border-color:                @selected;
     background-color:            @background;
@@ -83,7 +84,7 @@ entry {
     background-color:            inherit;
     text-color:                  inherit;
     cursor:                      text;
-    placeholder:                 "Search...";
+    placeholder:                 "...";
     placeholder-color:           inherit;
 }
 

@@ -5,7 +5,7 @@ wayland="$(echo $WAYLAND_DISPLAY)"
 
 if [ -z "$wayland" ]; then
 	if [[ "$wp_path" == *".mp4"*  ]]; then
-		xwinwrap -g 3840x2160 -ni -s -nf -b -un -ov -fdt -argb -- mpv --mute=yes --no-config --hwdec=nvdec --no-audio --quiet --geometry=3840x2160+0+0 -wid WID --loop --speed=0.7 "$wp_path" &
+		xwinwrap -g 3840x2160 -ni -s -nf -b -un -ov -fdt -argb -- mpv --mute=yes --no-config --hwdec=vdpau --no-audio --quiet --geometry=3840x2160+0+0 -wid WID --loop --speed=0.7 "$wp_path" &
 	else
 		feh --bg-scale --no-xinerama $wp_path
 	fi

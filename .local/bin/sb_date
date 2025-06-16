@@ -1,5 +1,3 @@
 #!/bin/sh
 
-source ~/.local/bin/theme
-
-echo "^c$ICON_COL^ ^c$FG_COL^$(date '+%F %I:%M:%S %p')"
+echo "$(date '+%F %I:%M:%S %p')"

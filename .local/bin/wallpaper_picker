@@ -1,15 +1,31 @@
 #!/bin/env bash
 
 wallpaper_folder=$HOME/pictures/wallpapers/
-wallpaper_location="$(ls "$wallpaper_folder" | sort | rofi -dmenu -hover-select -me-select-entry '' -me-accept-entry MousePrimary)"
-
+wallpaper_location="$(ls "$wallpaper_folder" | sort | rofi -dmenu -hover-select -me-select-entry '' -me-accept-entry MousePrimary -theme ~/.config/rofi/wallpaper_picker_style.rasi -i -p 'Select wallpaper...')"
+wayland="$(echo $WAYLAND_DISPLAY)"
 
 if [[ -d $wallpaper_folder/$wallpaper_location ]]; then
     wallpaper_temp="$wallpaper_location"
 elif [[ -f $wallpaper_folder/$wallpaper_location ]]; then
 	echo "$wallpaper_folder"/"$wallpaper_temp"/"$wallpaper_location" > ~/.wallpaper_path
-	swaybg -m fill -i "$wallpaper_folder"/"$wallpaper_temp"/"$wallpaper_location"
-	notify-send "Wallpaper set"
+	if [ -z "$wayland" ]; then
+		if [[ "$wallpaper_location" == *".mp4"* ]]; then 
+			killall xwinwrap
+			xwinwrap -g 3840x2160 -ni -s -nf -b -un -ov -fdt -argb -- mpv --mute=yes --no-config --hwdec=nvdec --no-audio --quiet --geometry=3840x2160+0+0 -wid WID --loop --speed=0.7 "$wallpaper_folder"/"$wallpaper_temp"/"$wallpaper_location" &
+		else
+			killall xwinwrap
+			feh --bg-scale --no-xinerama "$wallpaper_folder"/"$wallpaper_temp"/"$wallpaper_location"
+		fi
+	else
+		cd ~/.local/src/rwpspread/target/release && rm rwps_*.png
+		/home/joshua/.local/src/rwpspread/target/release/rwpspread -i $wallpaper_folder"/"$wallpaper_temp"/"$wallpaper_location
+		LEFT=$(echo ~/.local/src/rwpspread/target/release/rwps*DP-2.png)
+		RIGHT=$(echo ~/.local/src/rwpspread/target/release/rwps*HDMI-A-1.png)
+		swaybg -o "DP-2" -i $LEFT -o "HDMI-A-1" -i $RIGHT 
+		#swaybg -m stretch -i "$wallpaper_folder"/"$wallpaper_temp"/"$wallpaper_location"
+	fi
+	
+	notify-send -i $wallpaper_folder/$wallpaper_temp/$wallpaper_location -a "Wallpaper Picker" "Wallpaper Picker" "Successfully set $wallpaper_location wallpaper"
 else
     exit 1
 fi

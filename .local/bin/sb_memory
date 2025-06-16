@@ -1,8 +1,6 @@
 #!/bin/sh
 
-source ~/.local/bin/theme
-
 used="$(free -h | grep Mem: | awk '{print $3}')"
 available="$(free -h | grep Mem: | awk '{print $2}')"
 
-echo "^c$ICON_COL^ ^c$FG_COL^$used/$available"
+echo "$used/$available"
