@@ -1,6 +1,7 @@
 {
     "layer": "top", // Waybar at top layer
     "output": "HDMI-A-1",
+    //"output": "eDP-1",
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 15, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
@@ -154,9 +155,9 @@
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "{signalStrength}% ",
         "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
+	"tooltip-format": "{essid} : {ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
