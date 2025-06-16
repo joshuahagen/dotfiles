@@ -10,7 +10,13 @@ if [ -z "$wayland" ]; then
 		feh --bg-scale --no-xinerama $wp_path
 	fi
 else
-	LEFT=$(echo ~/.local/src/rwpspread/target/release/rwps*DP-2.png)
-	RIGHT=$(echo ~/.local/src/rwpspread/target/release/rwps*HDMI-A-1.png)
-	swaybg -o "DP-2" -i $LEFT -o "HDMI-A-1" -i $RIGHT
+	hostname="$(uname -r)"
+	distro="artix"
+	if [[ $hostname == *$distro* ]]; then
+		swaybg -m stretch -i $wp_path
+	else
+		LEFT=$(echo ~/.local/src/rwpspread/target/release/rwps*DP-2.png)
+		RIGHT=$(echo ~/.local/src/rwpspread/target/release/rwps*HDMI-A-1.png)
+		swaybg -o "DP-2" -i $LEFT -o "HDMI-A-1" -i $RIGHT
+	fi
 fi
