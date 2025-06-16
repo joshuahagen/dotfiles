@@ -17,12 +17,18 @@ elif [[ -f $wallpaper_folder/$wallpaper_location ]]; then
 			feh --bg-scale --no-xinerama "$wallpaper_folder"/"$wallpaper_temp"/"$wallpaper_location"
 		fi
 	else
-		cd ~/.local/src/rwpspread/target/release && rm rwps_*.png
-		/home/joshua/.local/src/rwpspread/target/release/rwpspread -i $wallpaper_folder"/"$wallpaper_temp"/"$wallpaper_location
-		LEFT=$(echo ~/.local/src/rwpspread/target/release/rwps*DP-2.png)
-		RIGHT=$(echo ~/.local/src/rwpspread/target/release/rwps*HDMI-A-1.png)
-		swaybg -o "DP-2" -i $LEFT -o "HDMI-A-1" -i $RIGHT 
-		#swaybg -m stretch -i "$wallpaper_folder"/"$wallpaper_temp"/"$wallpaper_location"
+		hostname="$(echo uname -r)"
+		distro="artix"
+		#! check if artix for laptop
+		if [[ $host == *$distro ]]; then
+			swaybg -m stretch -i "$wallpaper_path"/"$wallpaper_temp"/"$wallpaper_location"
+		else 
+			cd ~/.local/src/rwpspread/target/release && rm rwps_*.png
+			/home/joshua/.local/src/rwpspread/target/release/rwpspread -i $wallpaper_folder"/"$wallpaper_temp"/"$wallpaper_location
+			LEFT=$(echo ~/.local/src/rwpspread/target/release/rwps*DP-2.png)
+			RIGHT=$(echo ~/.local/src/rwpspread/target/release/rwps*HDMI-A-1.png)
+			swaybg -o "DP-2" -i $LEFT -o "HDMI-A-1" -i $RIGHT 
+		fi
 	fi
 	
 	notify-send -i $wallpaper_folder/$wallpaper_temp/$wallpaper_location -a "Wallpaper Picker" "Wallpaper Picker" "Successfully set $wallpaper_location wallpaper"
