@@ -2,7 +2,7 @@
     border: none;
     /*font-family: VictorMono, Iosevka Nerd Font, Noto Sans CJK;*/
     font-family: Hack, FontAwesome, Noto Sans CJK;
-    font-size: 14px;
+    font-size: 12px;
     font-style: normal;
     min-height: 0;
     border-radius: 0px;
@@ -16,7 +16,7 @@ window#waybar {
 /* general theme - can modify individual modules if chosen to do so below */
 #workspaces, #custom-power, #clock, #custom-weather, #window, #custom-uptime, #battery, #pulseaudio, #backlight, #network, #memory, #cpu, #temperature, #tray {
 	background: rgba(40, 40, 40, 0.75);
-        padding: 3px 10px 3px 10px;
+        padding: 3px 17px 3px 17px;
 	margin: 4px 0px 4px 0px;
 	border: solid 0px #f4d9e1;
 }
@@ -36,13 +36,13 @@ window#waybar {
 
 #workspaces button.active {
     	color: #f4d9e1;
-    	background-color: transparent;
+    	background: #3a4c40;
     	border-radius: 8px;
 }
 
 #workspaces button:hover {
-	color: black;
-	background-color: #E6B9C6;
+	color: #f4d9e1;
+	background: #3a4c40;
 	border-radius: 8px;
 }
 /* WORKSPACES END */
@@ -56,7 +56,7 @@ window#waybar {
 }
 
 #clock {
-	border-radius: 0px 8px 8px 0px;
+	border-radius: 8px 8px 8px 8px;
 }
 
 #custom-weather {
@@ -68,8 +68,8 @@ window#waybar {
 /* MODULES MIDDLE */
 #window {
 	margin-right: 8px;
-	margin-left: 8px;
-	border-radius: 8px;
+	margin-left: 0px;
+	border-radius: 0px 8px 8px 0px;
 }
 /* MODULES MIDDLE END */
 
@@ -95,12 +95,24 @@ window#waybar {
     	background-color: #f7768e;
 }
 
+#pulseaudio {
+	color: #DDE4ED;
+}
+
+#custom-uptime {
+	color: #CCDBE9;
+}
+
 #cpu {
-	color: #FFCC99;
+	color: #B4C9DD;
+}
+
+#memory {
+	color: #EDE1DB;
 }
 
 #temperature {
-	color: #CEC2EB;
+	color: #F1B3A1;
 	margin-right: 4px;
 	border-radius: 0px 8px 8px 0px;
 }
