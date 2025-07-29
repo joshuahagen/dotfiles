@@ -95,11 +95,12 @@
     "custom/power": {
      	"format": "{icon}",
 	"format-icons": [""],
+	"tooltip-format": "Powermenu",
 	"on-click": "~/.local/bin/powermenu" 
     },
     "clock": {
         // "timezone": "America/New_York",
-        //"tooltip-format": "<big>{:%r}</big>\n<tt><small>{calendar}</small></tt>",
+        "tooltip-format": "<big>{:%r}</big>\n<tt><small>{calendar}</small></tt>",
         "format": "{:%r} ",
 	"format-alt": "{:%r  %A, %b %d, %Y }",
     	"interval": 1
