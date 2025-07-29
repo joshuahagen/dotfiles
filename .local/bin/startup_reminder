@@ -1,0 +1,9 @@
+#!/bin/sh
+
+x=$(calcurse -a)
+
+if [ -z "$x"  ]; then
+	exit
+else
+	notify-send "Calcurse reminder" "$x"
+fi
