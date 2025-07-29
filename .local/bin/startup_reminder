@@ -3,6 +3,7 @@
 x=$(calcurse -a)
 
 if [ -z "$x"  ]; then
+	notify-send "Calcurse reminder" "No reminders for today!"
 	exit
 else
 	notify-send "Calcurse reminder" "$x"
