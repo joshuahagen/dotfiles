@@ -1,0 +1,8 @@
+#!/bin/bash
+
+word=$(rofi -dmenu -p "Enter word to define" -theme ~/.config/rofi/rofi_dict_entry_style.rasi)
+
+if [ -n "$word" ]; then 
+	definition=$(dict "$word" | grep -A 10 "From" | sed 's/^\s*//' | sed '/^$/d') # Example with 'dict'
+        rofi -e "Definition of '$word':\n\n$definition" -theme ~/.config/rofi/rofi_dict_result_style.rasi
+fi
