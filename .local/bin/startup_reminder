@@ -1,10 +1,11 @@
 #!/bin/sh
 
-x=$(calcurse -a)
+# check next 7 days for events
+x=$(calcurse -a -d 7)
 
 if [ -z "$x"  ]; then
-	notify-send "Calcurse reminder" "No reminders for today!"
+	notify-send "Calcurse reminder" "Nothing scheduled for the next 7 days!"
 	exit
 else
-	notify-send "Calcurse reminder" "$x"
+	notify-send "Calcurse schedule (Next 7 days)" "$x"
 fi
